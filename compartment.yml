@@ -7,10 +7,10 @@
       oracle.oci.oci_identity_compartment:
         description: "DNS services"
         name: DNS_services
-	parent_compartment_id: {{ root_compartment }}
-	region: {{ dns_region }}
-	state: present
-	wait: yes
+        parent_compartment_id: {{ root_compartment }}
+        region: {{ dns_region }}
+        state: present
+        wait: yes
       register: compartment
     - set_fact: dns_compartmen={{compartment.compartment_id}}
     - name: Dump debug information
