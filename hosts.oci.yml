@@ -1,0 +1,23 @@
+plugin: oracle.oci.oci
+
+regions:
+  - eu-frankfurt-1
+
+enable_parallel_processing: yes
+
+hostname_format_preferences:
+  - "display_name+'.oci.com'"
+  - "id"
+  - "hostname_label"
+
+cache: yes
+cache_plugin: jsonfile
+cache_timeout: 7200
+cache_connection: /tmp/oci-cache
+cache_prefix: oci_
+
+fetch_db_hosts: True
+fetch_compute_hosts: True
+
+primary_vnic_only: True
+
