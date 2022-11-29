@@ -15,7 +15,7 @@
         state: present
         wait: yes
       register: result
-    - set_fact: dns_compartment={{ result.compartment.compartment_id }}
+    - set_fact: dns_compartment={{ result.compartment.id }}
     - name: Dump debug information
       debug:
         msg: "New DNS compartment ID: {{dns_compartment}}"
