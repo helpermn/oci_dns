@@ -1,4 +1,1 @@
-vars:
-  dns_region: eu-frankfurt-1
-  vars_files:
-    - secrets.yml
+dns_region: eu-frankfurt-1
