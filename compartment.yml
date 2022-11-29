@@ -1,5 +1,7 @@
 ---
 - name: Create comparment for DNS services
+  vars_files:
+    - vars.yml
   connection: local
   hosts: localhost
   tasks:
@@ -7,8 +9,8 @@
       oracle.oci.oci_identity_compartment:
         description: "DNS services"
         name: DNS_services
-        parent_compartment_id: {{ root_compartment }}
-        region: {{ dns_region }}
+        parent_compartment_id: "{{ root_compartment }}"
+        region: "{{ dns_region }}"
         state: present
         wait: yes
       register: compartment
