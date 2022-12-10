@@ -1,22 +1,25 @@
 ---
-- name: Create comparment for DNS services
+- name: Create comparment for DNS Services
   vars_files:
     - vars.yml
     - secrets.yml
   connection: local
   hosts: localhost
   tasks:
-    - name: Create compartment
-      oracle.oci.oci_identity_compartment:
-        description: "DNS services"
-        name: DNS_services
+    - name: Gather all compartments facts
+      oracle.oci.oci_identity_compartment_facts:
         parent_compartment_id: "{{ root_compartment }}"
-        region: "{{ dns_region }}"
+    - name: Create compartment for DNS Services
+      oracle.oci.oci_identity_compartment:
+        description: "DNSServices"
+        name: DNSServices
+        parent_compartment_id: "{{ root_compartment }}"
+        region: "{{ def_region }}"
         state: present
         wait: yes
       register: result
-    - set_fact: dns_compartment={{ result.compartment.id }}
+    - set_fact: dnsservices_compartment={{ result.compartment.id }}
     - name: Dump debug information
       debug:
-        msg: "New DNS compartment ID: {{dns_compartment}}"
+        msg: "New DNSServices compartment ID: {{dnsservices_compartment}}"
 

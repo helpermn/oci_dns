@@ -5,7 +5,7 @@
   tasks:
     - name: Get stat of a file
       ansible.builtin.stat:
-        path: /tmp/oci-cache/oci_oracle.oci.oci_00b36s_f9555
+        path: "{{ lookup('ansible.builtin.env', 'HOME') }}/tmp/oci-cache/oci_oracle.oci.oci_00b36s_11f65"
       register: stat_result
     - name: Dump results - mtime
       debug:
@@ -24,7 +24,7 @@
   tasks:
     - name: Get stat of a file
       ansible.builtin.stat:
-        path: /tmp/oci-cache/oci_oracle.oci.oci_00b36s_f9555
+        path: "{{ lookup('ansible.builtin.env', 'HOME') }}/tmp/oci-cache/oci_oracle.oci.oci_00b36s_11f65"
       register: stat_result
     - name: Dump results - mtime
       debug:

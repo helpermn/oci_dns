@@ -1,3 +1,4 @@
+---
 plugin: oracle.oci.oci
 
 regions:
@@ -13,7 +14,7 @@ hostname_format_preferences:
 cache: yes
 cache_plugin: jsonfile
 cache_timeout: 7200
-cache_connection: /tmp/oci-cache
+cache_connection: ~/tmp/oci-cache
 cache_prefix: oci_
 
 fetch_db_hosts: True
