@@ -1,0 +1,31 @@
+---
+- name: Delete comparment for DNS Services
+  vars_files:
+    - vars.yml
+    - secrets.yml
+  connection: local
+  hosts: localhost
+  tasks:
+    - name: Gather facts for DNSServices compartment
+      oracle.oci.oci_identity_compartment_facts:
+        parent_compartment_id: "{{ root_compartment }}"
+        name: DNSServices
+      register: result
+    - block: 
+      - set_fact: dnsservices_compartment={{result.compartments[0].id}}
+      - name: Dump details about found compartments
+        debug:
+          msg: "{{result}}"
+      - name: Delete compartment for DNS Services
+        oracle.oci.oci_identity_compartment:
+          name: DNSServices
+          region: "{{ def_region }}"
+          compartment_id: "{{dnsservices_compartment}}"
+          state: absent
+          wait: yes
+        register: opstatus
+      - name: Dump operation result
+        debug:
+          msg: "{{opstatus}}"
+      when: result.compartments[0].id is defined
+
