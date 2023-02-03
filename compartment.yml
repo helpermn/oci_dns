@@ -21,5 +21,5 @@
     - set_fact: dnsservices_compartment={{ result.compartment.id }}
     - name: Dump debug information
       debug:
-        msg: "New DNSServices compartment ID: {{dnsservices_compartment}}"
+        msg: "New DNSServices compartment ID: {{ dnsservices_compartment }}"
 
