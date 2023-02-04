@@ -9,7 +9,7 @@
       register: stat_result
     - name: Dump results - mtime
       debug:
-        msg: '{{stat_result.stat.mtime}}'
+        msg: '{{ stat_result.stat.mtime }}'
 - name : Refresh OCI inventory
   collections:
     - oracle.oci
@@ -18,6 +18,8 @@
   tasks:
     - name: Refresh inventory
       meta: refresh_inventory
+  tags:
+    - initialization
 - name : Get inventory file stat
   connection: local
   hosts: localhost
@@ -28,5 +30,5 @@
       register: stat_result
     - name: Dump results - mtime
       debug:
-        msg: '{{stat_result.stat.mtime}}'
+        msg: '{{ stat_result.stat.mtime }}'
 

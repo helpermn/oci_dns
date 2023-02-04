@@ -12,20 +12,21 @@
         name: DNSServices
       register: result
     - block: 
-      - set_fact: dnsservices_compartment={{result.compartments[0].id}}
+      - name: Set facts
+        set_fact: dnsservices_compartment={{ result.compartments[0].id }}
       - name: Dump details about found compartments
         debug:
-          msg: "{{result}}"
+          msg: "{{ result }}"
       - name: Delete compartment for DNS Services
         oracle.oci.oci_identity_compartment:
           name: DNSServices
           region: "{{ def_region }}"
-          compartment_id: "{{dnsservices_compartment}}"
+          compartment_id: "{{ dnsservices_compartment }}"
           state: absent
           wait: yes
         register: opstatus
       - name: Dump operation result
         debug:
-          msg: "{{opstatus}}"
+          msg: "{{ opstatus }}"
       when: result.compartments[0].id is defined
 
