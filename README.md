@@ -3,7 +3,7 @@
 # To add a priv key to ssh agent for GIT:
 - .bashrc updated with:
 >
-    if pgrep -U $(whoami) ssh-agent 2>/dev/null ; then
+    if pgrep -U $(whoami) ssh-agent >/dev/null 2>/dev/null ; then
         declare -x SSH_AGENT_PID="$(pgrep -U $(whoami) ssh-agent)"
         declare -x SSH_AUTH_SOCK="/home/opc/.ssh/sshagent";
     else
